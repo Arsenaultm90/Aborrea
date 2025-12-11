@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://j7uq6m1of4or"]
+
+[ext_resource type="Script" uid="uid://cgo5wuu3oxibx" path="res://scripts/ui/SelectionBox.gd" id="1_45itr"]
+[ext_resource type="PackedScene" uid="uid://djya6msmkgwim" path="res://scenes/systems/PlayerController.tscn" id="1_mub6q"]
+[ext_resource type="PackedScene" uid="uid://mlwrq01rro05" path="res://scenes/characters/CharacterBase.tscn" id="2_xro63"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xro63"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_xro63"]
+vertices = PackedVector3Array(-9.8, 0.2, -9.8, -9.8, 0.2, 9.800001, 9.800001, 0.2, 9.800001, 9.800001, 0.2, -9.8)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 0
+cell_size = 0.1
+cell_height = 0.1
+agent_radius = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xro63"]
+size = Vector2(20, 20)
+
+[node name="GameWorld" type="Node3D"]
+
+[node name="SelectionManager" type="Node" parent="."]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="SelectionBox" type="ColorRect" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0.16470589, 1, 0.32156864, 0.42745098)
+script = ExtResource("1_45itr")
+
+[node name="TerrainRoot" type="Node3D" parent="."]
+
+[node name="TerrainCollider" type="StaticBody3D" parent="TerrainRoot"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TerrainRoot/TerrainCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_xro63")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="TerrainRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+navigation_mesh = SubResource("NavigationMesh_xro63")
+
+[node name="Terrain" type="MeshInstance3D" parent="TerrainRoot/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_xro63")
+skeleton = NodePath("../../..")
+
+[node name="CharacterBase" parent="." instance=ExtResource("2_xro63")]
+
+[node name="PlayerController" parent="." instance=ExtResource("1_mub6q")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.919417, 0.39328408, 0, -0.39328408, 0.919417, 0, 10.66173, 6.9594846)
+shadow_enabled = true

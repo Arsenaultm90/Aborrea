@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://mlwrq01rro05"]
+
+[ext_resource type="Script" uid="uid://b2cfwuly3bxop" path="res://scripts/characters/Character.gd" id="1_pqg8x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i5ywu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i5ywu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pqg8x"]
+radial_segments = 16
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqg8x"]
+albedo_color = Color(0.42278737, 1.3833263, 0, 1)
+
+[node name="CharacterBase" type="CharacterBody3D" groups=["units"]]
+script = ExtResource("1_pqg8x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_i5ywu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_i5ywu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.3
+target_desired_distance = 0.3
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="Stats" type="Node" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="SelectionIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.048, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_pqg8x")
+surface_material_override/0 = SubResource("StandardMaterial3D_pqg8x")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://djya6msmkgwim"]
+
+[ext_resource type="Script" uid="uid://c86dgdf4hwqmu" path="res://scripts/characters/PlayerController.gd" id="1_7he7i"]
+
+[node name="PlayerController" type="Node3D"]
+script = ExtResource("1_7he7i")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.60049, 0.79963225, 0, -0.79963225, 0.60049, 0, 8.594688, 8.318024)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
