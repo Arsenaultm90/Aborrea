@@ -50,6 +50,12 @@ skeleton = NodePath("../../..")
 
 [node name="CharacterBase" parent="." instance=ExtResource("2_xro63")]
 
+[node name="CharacterBase2" parent="." instance=ExtResource("2_xro63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.228945, 0, -5.3749514)
+
+[node name="CharacterBase3" parent="." instance=ExtResource("2_xro63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6357703, 0, -4.458499)
+
 [node name="PlayerController" parent="." instance=ExtResource("1_mub6q")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

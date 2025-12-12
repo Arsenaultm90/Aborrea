@@ -1,12 +1,22 @@
 extends CharacterBody3D
 
+@export var data: CharacterData
 @onready var agent = $NavigationAgent3D
 
 var move_speed := 5.0
 var is_selected: bool = false
 
 func _ready():
+	if data:
+		data.initialize()
+	
+	print(
+	data.character_name,
+	" HP:", data.current_health,
+	"/", data.stats.get_max_health()
+	)
 	pass
+
 
 func _physics_process(_delta):
 	if agent.is_navigation_finished():
@@ -19,13 +29,12 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-## --------------------------------------------------------------------
-## 							PLAYER SELECTION
-## --------------------------------------------------------------------
+## PLAYER SELECTION
 func select():
 	is_selected = true
 	if $SelectionIndicator:
 		$SelectionIndicator.visible = true
+
 
 func deselect():
 	is_selected = false

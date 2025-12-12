@@ -24,5 +24,6 @@ func end(_pos: Vector2) -> Rect2 :
 
 func _update_rect():
 	var rect = Rect2(start_pos, end_pos - start_pos)
+	rect = rect.abs()
 	position = rect.position
-	size = rect.size.abs()
+	size = rect.size

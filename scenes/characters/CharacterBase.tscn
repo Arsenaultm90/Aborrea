@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://mlwrq01rro05"]
+[gd_scene load_steps=7 format=3 uid="uid://mlwrq01rro05"]
 
 [ext_resource type="Script" uid="uid://b2cfwuly3bxop" path="res://scripts/characters/Character.gd" id="1_pqg8x"]
+[ext_resource type="Resource" uid="uid://c3ymgxdtobevw" path="res://data/characters/human_test_character.tres" id="2_dpn6f"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i5ywu"]
 
@@ -15,6 +16,7 @@ albedo_color = Color(0.42278737, 1.3833263, 0, 1)
 
 [node name="CharacterBase" type="CharacterBody3D" groups=["units"]]
 script = ExtResource("1_pqg8x")
+data = ExtResource("2_dpn6f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
